@@ -245,6 +245,18 @@ export default function Index() {
 
       <div className="relative z-10 min-h-screen px-4 py-14 font-golos">
 
+        {/* ─── ФОТО ─── */}
+        <section className={`text-center mb-8 ${visible ? "section-enter delay-1" : "opacity-0"}`}>
+          <div className="mx-auto" style={{ maxWidth: 320 }}>
+            <img
+              src="https://cdn.poehali.dev/projects/706e474b-93fd-47a0-9bcc-ec4b72a239cc/bucket/1cf78021-5d62-41f9-bbc5-3dfc7996e434.png"
+              alt="Именинница"
+              className="w-full rounded-3xl shadow-lg"
+              style={{ border: "2px solid #FFD6E0", objectFit: "cover" }}
+            />
+          </div>
+        </section>
+
         {/* ─── ПРИВЕТСТВИЕ ─── */}
         <section className={`text-center mb-16 ${visible ? "section-enter delay-1" : "opacity-0"}`}>
           <div className="inline-block px-4">
@@ -267,7 +279,7 @@ export default function Index() {
             <h2
               className="font-caveat text-2xl font-bold text-center mb-5 text-gray-700"
             >
-              🗓 {MARCH_2026.name}
+              {MARCH_2026.name}
             </h2>
             <Calendar />
           </div>
