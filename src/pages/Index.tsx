@@ -12,17 +12,6 @@ const START_DAY_INDEX = 6;
 
 const DAYS_OF_WEEK = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"];
 
-interface FloatingItem {
-  id: number;
-  left: number;
-  size: number;
-  duration: number;
-  delay: number;
-  emoji: string;
-  swayDuration: number;
-  swayDelay: number;
-}
-
 function HeartSvg({
   size,
   color,
@@ -50,30 +39,16 @@ function HeartSvg({
 }
 
 function FloatingHearts() {
-  const HEART_COLORS = ["#FFB3C6","#FFD6E0","#A8D8EA","#C8E6F5","#F9A8C0","#B5D8F7"];
-  const EMOJIS = ["🦋","🦋","🦋","🎈","🎈","🎈","🎂","🎂","🎁","🎁"];
+  const HEART_COLORS = ["#FFB3C6","#FFD6E0","#A8D8EA","#C8E6F5","#F9A8C0","#B5D8F7","#FFDDE8"];
 
   const [hearts] = useState(() =>
-    Array.from({ length: 10 }, (_, i) => ({
+    Array.from({ length: 20 }, (_, i) => ({
       id: i,
       left: Math.random() * 100,
-      size: 14 + Math.random() * 18,
-      duration: 10 + Math.random() * 12,
-      delay: Math.random() * 16,
+      size: 14 + Math.random() * 22,
+      duration: 9 + Math.random() * 14,
+      delay: Math.random() * 14,
       color: HEART_COLORS[Math.floor(Math.random() * HEART_COLORS.length)],
-      swayDuration: 3 + Math.random() * 4,
-      swayDelay: Math.random() * 3,
-    }))
-  );
-
-  const [items] = useState<FloatingItem[]>(() =>
-    EMOJIS.map((emoji, i) => ({
-      id: i,
-      left: Math.random() * 100,
-      size: 20 + Math.random() * 14,
-      duration: 11 + Math.random() * 13,
-      delay: Math.random() * 18,
-      emoji,
       swayDuration: 3 + Math.random() * 4,
       swayDelay: Math.random() * 3,
     }))
@@ -83,7 +58,7 @@ function FloatingHearts() {
     <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
       {hearts.map((heart) => (
         <div
-          key={`h-${heart.id}`}
+          key={heart.id}
           style={{
             position: "absolute",
             left: `${heart.left}%`,
@@ -93,23 +68,6 @@ function FloatingHearts() {
         >
           <div style={{ animation: `floatSway ${heart.swayDuration}s ${heart.swayDelay}s ease-in-out infinite` }}>
             <HeartSvg size={heart.size} color={heart.color} />
-          </div>
-        </div>
-      ))}
-      {items.map((item) => (
-        <div
-          key={`e-${item.id}`}
-          style={{
-            position: "absolute",
-            left: `${item.left}%`,
-            bottom: "-60px",
-            animation: `floatUp ${item.duration}s ${item.delay}s linear infinite`,
-            fontSize: item.size,
-            lineHeight: 1,
-          }}
-        >
-          <div style={{ animation: `floatSway ${item.swayDuration}s ${item.swayDelay}s ease-in-out infinite` }}>
-            {item.emoji}
           </div>
         </div>
       ))}
